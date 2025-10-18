@@ -12,13 +12,16 @@ public class SpringCalculator {
             return 0;
         }
 
+        // 리터럴 \n을 실제 줄바꿈으로 정규화(터미널 인식 문제)
+        input = input.replace("\\n", "\n");
+
         String numbers = input;
         String delimiter = ",|:";   // 기본 구문자 미리 설정
 
         if (input.startsWith("//")){    // //로 시작하면 커스텀 구분자 모드로 판정
             Matcher m = CUSTOM_PATTERN.matcher(input);
             if (m.matches()){   // 정규식이 입력 전체를 매칭했는지 검사
-                String custom = Pattern.quote(m.group(1));  // 그룹 1에서 커스텀 구분자 추출하여 기본 구문자 대체
+                String custom = Pattern.quote(m.group(1));  // 그룹 1에서 커스텀 구분자 추출하여 delimiter에 추가
                 // Pattern.quote() 로 감싸 정규식 특수문자여도 안전하게 리터럴 취급하도록 처리
                 delimiter = delimiter + "|" + custom;
                 numbers = m.group(2);   // 숫자들이 들어있는 본문을 추출해 그룹 2에 저장
@@ -30,7 +33,7 @@ public class SpringCalculator {
         String[] tokens = numbers.split(delimiter);
 
         int sum = 0;
-        for (String token : tokens) {   // split한 token을 sum에 더하는 과
+        for (String token : tokens) {   // split한 token을 sum에 더하는 과정
             if (token == null) continue;
             token = token.trim();   // 토근 앞뒤 공백 제거
             if (token.isEmpty()) continue;
