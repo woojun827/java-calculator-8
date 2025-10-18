@@ -33,7 +33,6 @@ public class SpringCalculator {
             if (token == null) continue;
             token = token.trim();   // 토근 앞뒤 공백 제거
             if (token.isEmpty()) continue;
-            sum += Integer.parseInt(token);
 
             final int number;
             try{

@@ -8,6 +8,11 @@ public class Application {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
-        SpringCalculator.splitAndSum(input);
+        try {
+            int result = SpringCalculator.splitAndSum(input);
+            System.out.println("결과: " + result);
+        }catch (IllegalArgumentException e) {
+            System.out.println("에러: " + e.getMessage());
+        }
     }
 }
