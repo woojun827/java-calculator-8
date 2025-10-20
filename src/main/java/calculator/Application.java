@@ -10,9 +10,9 @@ public class Application {
 
         try {
             int result = SpringCalculator.splitAndSum(input);
-            System.out.println("결과: " + result);
+            System.out.println("결과 : " + result);
         }catch (IllegalArgumentException e) {
-            System.out.println("에러: " + e.getMessage());
+            System.out.println("에러 : " + e.getMessage());
         }
     }
 }
